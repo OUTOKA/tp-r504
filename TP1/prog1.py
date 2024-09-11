@@ -5,8 +5,8 @@ import fonctions as f
 try:
     a = input("Entrez la base (a) : ")
     b = input("Entrez l'exposant (b) : ")
-    a = int(a)
-    b = int(b)
+    a = float(a)
+    b = float(b)
     res = f.puissance(a, b)
 
     print(f"{a} à la puissance {b} est {res}")
