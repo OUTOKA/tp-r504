@@ -1,4 +1,3 @@
-pip3 install pytest
 name: tests unitaires
 on: [push]
 jobs:
