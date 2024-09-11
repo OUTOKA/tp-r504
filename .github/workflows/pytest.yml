@@ -1,6 +1,5 @@
 name: tests unitaires
 on: [push]
-pip3 install pytest
 jobs:
   build:
     runs-on: ubuntu-latest
