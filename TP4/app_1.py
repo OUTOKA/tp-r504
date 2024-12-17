@@ -11,13 +11,14 @@ db_config = {
     'database': 'demosql'
 }
 
-# Initialize MySQL connection
-conn = mysql.connector.connect(**db_config)
-cursor = conn.cursor() 
+
 
 
 @app.route('/')
 def index():
+	# Initialize MySQL connection
+    conn = mysql.connector.connect(**db_config)
+    cursor = conn.cursor() 
     # Sample query
     query = "SELECT * FROM myTable"
     cursor.execute(query)
@@ -28,6 +29,14 @@ def index():
     conn.close()
     
     return render_template('index.html', data=data)
+
+@app.route('/p3', methods=['GET', 'POST'])
+def index3():
+    return render_template("form.html")
+
+@app.route('/newuser/', methods=['GET', 'POST'])
+def new_user():
+    return"aaa"
 
 if __name__ == '__main__':
     app.run(debug=True)
