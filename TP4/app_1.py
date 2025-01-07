@@ -2,6 +2,7 @@
 
 from flask import Flask, request, render_template
 import mysql.connector
+import re
 
 app = Flask(__name__)
  
@@ -36,11 +37,22 @@ def index():
 def monForm():
     return render_template("form.html")
 
+
 @app.route('/newuser',methods = ['POST', 'GET'])
 def newuser():
 	if request.method == 'POST':
 		res = request.form.get( "lname" )
 		return render_template("response.html", login=res)
+		regex = ".{6,}"
+		log=re.fullmatch( regex, res )
+		return log
+		if log == None:
+			mdp = "mot de passe incorrect"
+			return render_template("response.html", resultat=mdp)
+		else:
+			mdp = "mot de passe correct"
+			return render_template("response.html", resultat=mdp)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
