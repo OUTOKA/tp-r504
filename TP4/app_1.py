@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+
+
+from flask import Flask, request, render_template
 import mysql.connector
 
 app = Flask(__name__)
@@ -30,13 +32,15 @@ def index():
     
     return render_template('index.html', data=data)
 
-@app.route('/p3', methods=['GET', 'POST'])
-def index3():
+@app.route("/monFormulaire")
+def monForm():
     return render_template("form.html")
 
-@app.route('/newuser/', methods=['GET', 'POST'])
-def new_user():
-    return"aaa"
+@app.route('/newuser',methods = ['POST', 'GET'])
+def newuser():
+	if request.method == 'POST':
+		res = request.form.get( "lname" )
+		return render_template("response.html", login=res)
 
 if __name__ == '__main__':
     app.run(debug=True)
