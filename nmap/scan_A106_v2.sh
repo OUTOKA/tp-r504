@@ -1,6 +1,6 @@
 #!/bin/bash
 
-nmap -sU -oG out.txt 172.16.0.0/24
+nmap -oG out.txt 172.16.0.0/24
 nmap -sU -F -oG out2.txt 172.16.0.0/24
 
 echo "# - IP - TCP ports" > "scan-result_2.csv"
@@ -12,4 +12,4 @@ for ip in $( cat out.txt | grep "Ports:" | awk '{print $2}'); do
   echo "$ip;$open_ports_tcp;$open_ports_udp" >> "scan-result_2.csv"
 done
 
-echo "Scan terminé. Voir scan-result_1.csv."
+echo "Scan terminé. Voir scan-result_2.csv."
